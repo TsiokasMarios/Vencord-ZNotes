@@ -1,0 +1,500 @@
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2026 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+/* Chat Bar Button Styles */
+.vc-znotes-chatbar-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vc-znotes-chatbar-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: var(--status-danger);
+    color: var(--white-500);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 0 3px;
+    border-radius: 8px;
+    min-width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+/* Popout Panel Styles */
+.vc-znotes-panel-wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 700px;
+    width: 100%;
+    color: var(--text-normal, #dbdee1);
+}
+
+/* Force all Text components inside the panel to inherit proper colors */
+.vc-znotes-panel-wrapper [class*="text-"],
+.vc-znotes-panel-wrapper [class*="heading-"],
+.vc-znotes-panel-wrapper [class*="defaultColor-"],
+.vc-znotes-panel-wrapper [class*="eyebrow-"] {
+    color: inherit !important;
+}
+
+/* Top bar with title and search */
+.vc-znotes-panel-top-bar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 12px 16px !important;
+    border-bottom: 1px solid var(--background-modifier-accent) !important;
+    gap: 16px !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.vc-znotes-panel-title {
+    color: var(--header-primary, #f2f3f5) !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    margin-right: 16px !important;
+    display: inline-block !important;
+    min-width: fit-content !important;
+}
+
+.vc-znotes-panel-search-box {
+    position: relative;
+    flex: 1;
+    max-width: none;
+    margin-left: auto;
+}
+
+.vc-znotes-panel-search-input {
+    width: 100%;
+    height: 32px;
+    background: var(--input-background, #1e1f22) !important;
+    border: 1px solid var(--input-border, rgba(255, 255, 255, 0.2)) !important;
+    border-radius: 4px;
+    padding: 0 32px 0 10px;
+    color: var(--header-primary, #f2f3f5) !important;
+    font-size: 13px;
+    line-height: 32px;
+    outline: none !important;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.vc-znotes-panel-search-input:focus {
+    border-color: var(--brand-experiment, #5865f2) !important;
+}
+
+.vc-znotes-panel-search-input::placeholder {
+    color: var(--text-muted, #949ba4) !important;
+}
+
+.vc-znotes-panel-search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted, #949ba4);
+    pointer-events: none;
+}
+
+/* Controls bar with filter tabs and sort */
+.vc-znotes-panel-controls-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--background-modifier-accent);
+    gap: 24px;
+    flex-wrap: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.vc-znotes-panel-filter-tabs {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.vc-znotes-panel-filter-tab {
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    color: var(--interactive-normal, #b5bac1);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.vc-znotes-panel-filter-tab:hover {
+    background: var(--background-modifier-hover, rgba(255, 255, 255, 0.06));
+    color: var(--header-primary, #f2f3f5);
+}
+
+.vc-znotes-panel-filter-tab.vc-znotes-panel-active {
+    background: var(--background-modifier-active, rgba(255, 255, 255, 0.08));
+    color: var(--header-primary, #f2f3f5);
+}
+
+.vc-znotes-panel-sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.vc-znotes-panel-sort-label {
+    color: var(--text-muted, #949ba4);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.vc-znotes-panel-sort-select {
+    min-width: 120px;
+}
+
+/* Content area */
+.vc-znotes-panel-content {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 16px;
+    max-height: 550px;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.vc-znotes-panel-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    text-align: center;
+    color: var(--header-primary, #f2f3f5);
+}
+
+.vc-znotes-panel-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    text-align: center;
+}
+
+.vc-znotes-panel-empty-title {
+    color: var(--header-primary, #f2f3f5) !important;
+    margin-bottom: 8px;
+}
+
+.vc-znotes-panel-empty-subtext {
+    color: var(--text-normal, #dbdee1) !important;
+}
+
+.vc-znotes-panel-stats {
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.vc-znotes-panel-scroller {
+    flex: 1;
+    max-height: 450px;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.vc-znotes-panel-notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Pagination */
+.vc-znotes-panel-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding-top: 12px;
+    border-top: 1px solid var(--background-modifier-accent);
+}
+
+.vc-znotes-panel-page-btn {
+    background: var(--button-secondary-background, #4e5058);
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    color: var(--header-primary, #f2f3f5);
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.vc-znotes-panel-page-btn:hover:not(:disabled) {
+    background: var(--button-secondary-background-hover);
+}
+
+.vc-znotes-panel-page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.vc-znotes-panel-page-info {
+    font-size: 13px;
+    color: var(--text-normal, #dbdee1);
+    padding: 0 10px;
+}
+
+/* Note Card Styles */
+.vc-znotes-card-container {
+    background: var(--background-secondary);
+    border: 1px solid var(--background-tertiary);
+    border-radius: 8px;
+    padding: 12px;
+    transition: border-color 0.2s;
+}
+
+.vc-znotes-card-container:hover {
+    border-color: var(--background-modifier-accent);
+}
+
+.vc-znotes-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.vc-znotes-card-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vc-znotes-card-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.vc-znotes-card-avatar-placeholder {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--brand-experiment);
+    color: var(--white-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.vc-znotes-card-author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.vc-znotes-card-username {
+    color: var(--text-link, #00a8fc) !important;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.vc-znotes-card-timestamp {
+    color: var(--text-muted, #949ba4) !important;
+    font-size: 11px;
+}
+
+.vc-znotes-card-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.vc-znotes-card-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--interactive-normal, #b5bac1);
+    transition: all 0.2s;
+}
+
+.vc-znotes-card-action-btn:hover {
+    background: var(--background-modifier-hover, rgba(255, 255, 255, 0.06));
+    color: var(--header-primary, #f2f3f5);
+}
+
+.vc-znotes-card-action-btn.vc-znotes-card-delete:hover {
+    background: var(--button-danger-background);
+    color: var(--white-500);
+}
+
+.vc-znotes-card-action-btn.vc-znotes-card-jump:hover {
+    background: var(--button-secondary-background);
+    color: var(--text-normal);
+}
+
+.vc-znotes-card-action-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.vc-znotes-card-content {
+    background: var(--background-primary, #313338);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: var(--text-normal, #dbdee1) !important;
+    line-height: 1.5;
+    word-break: break-word;
+    user-select: text;
+    cursor: text;
+    font-size: 13px;
+}
+
+.vc-znotes-card-content * {
+    user-select: text;
+}
+
+.vc-znotes-card-content::selection {
+    background: var(--text-highlight);
+    color: var(--white-500);
+}
+
+/* Parsed content (emotes, mentions, links etc) */
+.vc-znotes-card-parsed-content {
+    font-size: 13px;
+    line-height: 1.375rem;
+    color: var(--text-normal, #dbdee1);
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+/* Attachment styles */
+.vc-znotes-card-attachments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.vc-znotes-card-attachment-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 4px;
+    object-fit: contain;
+    display: block;
+    cursor: pointer;
+}
+
+.vc-znotes-card-attachment-image:hover {
+    opacity: 0.9;
+}
+
+.vc-znotes-card-attachment-video {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 4px;
+    display: block;
+}
+
+.vc-znotes-card-file-attachments {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.vc-znotes-card-file-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    background: var(--background-secondary, #2b2d31);
+    border: 1px solid var(--background-modifier-accent, rgba(255, 255, 255, 0.06));
+    border-radius: 4px;
+    color: var(--text-link, #00a8fc) !important;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background 0.15s;
+}
+
+.vc-znotes-card-file-link:hover {
+    background: var(--background-modifier-hover, rgba(255, 255, 255, 0.06));
+}
+
+.vc-znotes-card-file-icon {
+    flex-shrink: 0;
+    color: var(--interactive-normal, #b5bac1);
+}
+
+.vc-znotes-card-file-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vc-znotes-card-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.vc-znotes-card-saved-date {
+    color: var(--text-muted, #949ba4) !important;
+    font-size: 11px;
+}
+
+/* Select component overrides */
+.vc-znotes-panel-sort-select .bd-select {
+    background: var(--input-background);
+    border-color: var(--input-border);
+    font-size: 12px;
+    min-height: 28px;
+}
+
+.vc-znotes-panel-sort-select .bd-select:hover {
+    border-color: var(--interactive-hover);
+}
+
+.vc-znotes-panel-sort-select .bd-select-options {
+    background: var(--background-secondary);
+    border-color: var(--background-tertiary);
+}
+
+.vc-znotes-panel-sort-select .bd-select-option {
+    color: var(--text-normal);
+    font-size: 12px;
+}
+
+.vc-znotes-panel-sort-select .bd-select-option:hover {
+    background: var(--background-modifier-hover);
+}
+
+.vc-znotes-panel-sort-select .bd-select-option.selected {
+    background: var(--background-modifier-selected);
+}
